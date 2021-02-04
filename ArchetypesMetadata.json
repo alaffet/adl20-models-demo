@@ -230,5 +230,12 @@
     "path" : "archetypes/openEHR-EHR-SECTION.medication.v1.adls",
     "sha" : "d379bcf36aa1293b122d305a3daa87b3647ada0f",
     "languages" : [ "en" ]
+  }, {
+    "id" : "openEHR-EHR-ENTRY.testentry.v1.0.0",
+    "rmType" : "ENTRY",
+    "name" : "testEntry",
+    "path" : "archetypes/openEHR-EHR-ENTRY.testentry.v1.adls",
+    "sha" : "1dfa0d2d544d92d04d2deb5d7898e46459ccbd5f",
+    "languages" : [ "en" ]
   } ]
 }
