@@ -1,0 +1,259 @@
+template (adl_version=2.0.5; rm_release=1.0.2; generated)
+    openEHR-EHR-COMPOSITION.test.v1.0.0
+
+specialize
+    openEHR-EHR-COMPOSITION.encounter.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sl"] = <
+            author = <
+                ["name"] = <"?">
+            >
+            language = <[ISO_639-1::sl]>
+        >
+    >
+    
+description
+    copyright = <"copyright (c) 2010 openEHR Foundation">
+    details = <
+        ["en"] = <
+            keywords = <"progress", "note", "encounter">
+            language = <[ISO_639-1::en]>
+            misuse = <"">
+            purpose = <"Record of encounter as a progress note.">
+            use = <"">
+        >
+        ["sl"] = <
+            keywords = <"progress", "note", "encounter">
+            language = <[ISO_639-1::sl]>
+            misuse = <"">
+            purpose = <"Record of encounter as a progress note.">
+            use = <"">
+        >
+    >
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["organisation"] = <"Ocean Informatics">
+        ["name"] = <"Thomas Beale">
+        ["date"] = <"2005-10-10">
+    >
+
+definition
+    COMPOSITION[id1.1] matches {    -- Encounter
+        /category[id4]/defining_code matches {[at1]}
+        /context[id5]/other_context[id2]/items matches {
+            allow_archetype CLUSTER[id3] matches { 
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        content matches {
+            use_archetype OBSERVATION[id0.2, openEHR-EHR-OBSERVATION.ovl-test-blood_pressure-001.v1.0.0]
+            use_archetype OBSERVATION[id0.3, openEHR-EHR-OBSERVATION.ovl-test-body_mass_index-001.v1.0.0]
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Encounter">
+                description = <"Generic encounter or progress note composition">
+            >
+        >
+        ["sl"] = <
+            ["id1.1"] = <
+                text = <"Encounter">
+                description = <"Generic encounter or progress note composition">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-OBSERVATION.ovl-test-blood_pressure-001.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.blood_pressure.v1.0.0
+
+definition
+    OBSERVATION[id1.1] matches {    -- *Blood Pressure(en)
+        /data[id2]/events matches {
+            EVENT[id7] matches {
+                /data[id4]/items matches {
+                    ELEMENT[id5] matches {
+                        value matches {
+                            DV_QUANTITY[id1054] matches {
+                                property matches {[at1055]}
+                                magnitude matches {|0.0..<1000.0|}
+                                precision matches {|0|}
+                                units matches {"mm[Hg]"}
+                            }
+                        }
+                    }
+                    ELEMENT[id6] matches {
+                        value matches {
+                            DV_QUANTITY[id1055] matches {
+                                property matches {[at1055]}
+                                magnitude matches {|0.0..<1000.0|}
+                                precision matches {|0|}
+                                units matches {"mm[Hg]"}
+                            }
+                        }
+                    }
+                    ELEMENT[id1007] matches {
+                        value matches {
+                            DV_QUANTITY[id1056] matches {
+                                property matches {[at1055]}
+                                magnitude matches {|0.0..<1000.0|}
+                                precision matches {|0|}
+                                units matches {"mm[Hg]"}
+                            }
+                        }
+                    }
+                    ELEMENT[id1008] matches {
+                        value matches {
+                            DV_QUANTITY[id1057] matches {
+                                property matches {[at1055]}
+                                magnitude matches {|0.0..<1000.0|}
+                                precision matches {|0|}
+                                units matches {"mm[Hg]"}
+                            }
+                        }
+                    }
+                }
+                /state[id8]/items matches {
+                    ELEMENT[id9] matches {
+                        /value[id1059]/defining_code matches {[ac1; at1002]}
+                    }
+                    allow_archetype CLUSTER[id1031] matches { 
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.level_of_exertion(-a-zA-Z0-9_]+)*\.v1/}
+                    }
+                    ELEMENT[id1044] matches {
+                        /value[id1061]/defining_code matches {[ac2; at1045]}
+                    }
+                    ELEMENT[id1006] matches {
+                        value matches {
+                            DV_QUANTITY[id1062] matches {
+                                property matches {[at1056]}
+                                magnitude matches {|-90.0..90.0|}
+                                precision matches {|0|}
+                                units matches {"°"}
+                            }
+                        }
+                    }
+                }
+            }
+            INTERVAL_EVENT[id1043] matches {
+                /math_function[id1063]/defining_code matches {[at1057]}
+                /width[id1064]/value matches {PT24H}
+            }
+        }
+        /protocol[id12]/items matches {
+            ELEMENT[id14] matches {
+                /value[id1067]/defining_code matches {[ac3]}
+            }
+            CLUSTER[id1034] matches {
+                /items[id15]/value[id1068]/defining_code matches {[ac4]}
+            }
+            ELEMENT[id1036] matches {
+                /value[id1070]/defining_code matches {[ac5]}
+            }
+            ELEMENT[id1011] matches {
+                /value[id1072]/defining_code matches {[ac6]}
+            }
+            allow_archetype CLUSTER[id1026] matches { 
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-a-zA-Z0-9_]+)*\.v1/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sl"] = <
+            ["id1.1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+        ["zh-cn"] = <
+            ["id1.1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+        ["de"] = <
+            ["id1.1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Blood Pressure">
+                description = <"The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.">
+            >
+        >
+        ["ja"] = <
+            ["id1.1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+        ["nl"] = <
+            ["id1.1"] = <
+                text = <"*Blood Pressure(en)">
+                description = <"*The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.(en)">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-OBSERVATION.ovl-test-body_mass_index-001.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.body_mass_index.v1.0.0
+
+definition
+    OBSERVATION[id1.1] matches {    -- Body mass index
+        /data[id2]/events[id3]/data[id4]/items[id5]/value matches {
+            DV_QUANTITY[id13] matches {
+                property matches {[at10]}
+                [magnitude, units, precision] matches {
+                    [{|0.0..<1000.0|}, {"kg/m2"}, {|1|}], 
+                    [{|0.0..<1000.0|}, {"lb/in2"}, {|1|}]
+                }
+            }
+        }
+        /protocol[id6]/items[id7]/value[id14]/defining_code matches {[ac1]}
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Body mass index">
+                description = <"Calculated measurement which compares a person's weight and height.">
+            >
+        >
+        ["nl"] = <
+            ["id1.1"] = <
+                text = <"Body mass index">
+                description = <"Berekende meting welke gewicht en lengte van een persoon vergelijkt.">
+            >
+        >
+        ["sl"] = <
+            ["id1.1"] = <
+                text = <"Indeks telesne mase (ITM)">
+                description = <"Indeks telesne mase (ITM)">
+            >
+        >
+    >
+
